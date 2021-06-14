@@ -1,0 +1,14 @@
+The ReactJS application should be able to:
+- Retrieve data via a HTTP GET-request from the NodeJS server.
+- Post data via a HTTP POST-request to the NodeJS server.
+- Display retrieved data using ReactJS component(s).
+- Provide a way to submit data using ReactJS component(s).
+The NodeJS server should be able to:
+- Provide necessary HTTP routes.
+- Serve and communicate with the attached JSON file.
+- (Optional) Serve the ReactJS application build.
+This assignment only requires you to implement a GET and POST request. However
+you are free to add more endpoints.
+Once you’re done upload the code to a public git repository and send us the link.
+ 
+ 
