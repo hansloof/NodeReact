@@ -14,7 +14,7 @@ const CreateProgram = ({ onChangeForm, createProgram }) => {
           />
         </div>
         <div>
-          <label htmlFor="exampleInputPassword1">Title</label>
+          <label>Title</label>
           <input
             type="text"
             onChange={(e) => onChangeForm(e)}

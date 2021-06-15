@@ -3,6 +3,9 @@ const fs = require("fs");
 
 const app = express();
 
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 app.get("/", (req, res) => {
   return res.status(200).send("Server running");
 });
@@ -11,7 +14,7 @@ app.get("/api/programs", (req, res) => {
   fs.readFile("./programs.json", (err, data) => {
     if (err) throw err;
 
-    res.status(200).send(Object.values(JSON.parse(data)));
+    res.status(200).json(Object.values(JSON.parse(data)));
   });
 });
 
@@ -26,14 +29,14 @@ app.get("/api/program/:id", (req, res) => {
     if (!program) {
       return res
         .status(404)
-        .send(
+        .json(
           `The program with the given ID ${parseInt(
             req.params.id
           )} was not found`
         );
     }
 
-    return res.status(200).send(program);
+    return res.status(200).json(program);
   });
 });
 
@@ -47,14 +50,14 @@ app.post("/api/program", (req, res) => {
     for (var i in jsonContentArray) {
       if (jsonContentArray[i].id === id) {
         console.log(`ID ${id} already exist`);
-        return res.status(404).send(`Could not add program`);
+        return res.status(404).json(`Failed to add program`);
       }
     }
 
     const program = {
       id,
-      instructorId: req.body.program.instructorId,
-      title: req.body.program.title,
+      instructorId: req.body.instructorId,
+      title: req.body.title,
     };
 
     jsonContentArray.push(program);
@@ -64,11 +67,10 @@ app.post("/api/program", (req, res) => {
       JSON.stringify(jsonContentArray, null, 2),
       (err) => {
         if (err) throw err;
-        console.log("Data written to file");
       }
     );
 
-    res.status(200).send("program added");
+    res.status(200).json(`Added program: ${JSON.stringify(program)}`);
   });
 });
 
