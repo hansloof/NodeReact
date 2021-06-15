@@ -16,13 +16,7 @@ function Programs({ programs, getAllPrograms }) {
   return (
     <div>
       <h2>Programs</h2>
-      <button
-        type="button"
-        onClick={(e) => getAllPrograms()}
-        className="btn btn-warning"
-      >
-        Get all Programs
-      </button>
+      <button onClick={(e) => getAllPrograms()}>Get all Programs</button>
       <table>
         <thead>
           <tr>

@@ -8,23 +8,24 @@ function App() {
   const [program, setProgram] = useState({});
   const [programs, setPrograms] = useState([]);
 
-  const programCreate = (e) => {
+  useEffect(() => {
+    getAllPrograms().then((response) => {
+      setPrograms(response);
+    });
+  }, []);
+
+  const createProgramHandler = (e) => {
     createProgram(program).then((response) => {
       console.log(response);
     });
   };
 
-  const fetchAllPrograms = () => {
-    getAllPrograms().then((programs) => {
-      setPrograms(programs);
+  const getAllProgramsHandler = () => {
+    getAllPrograms().then((response) => {
+      console.log(response);
+      setPrograms(response);
     });
   };
-
-  useEffect(() => {
-    getAllPrograms().then((programs) => {
-      setPrograms(programs);
-    });
-  }, []);
 
   const onChangeForm = (e) => {
     if (e.target.name === "instructorId") {
@@ -41,9 +42,9 @@ function App() {
       <CreateProgram
         program={program}
         onChangeForm={onChangeForm}
-        createProgram={programCreate}
+        createProgram={createProgramHandler}
       ></CreateProgram>
-      <Programs programs={programs} getAllPrograms={fetchAllPrograms} />
+      <Programs programs={programs} getAllPrograms={getAllProgramsHandler} />
     </div>
   );
 }

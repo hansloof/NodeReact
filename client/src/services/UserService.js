@@ -3,16 +3,11 @@ export async function getAllPrograms() {
   return await response.json();
 }
 
-export async function getProgram() {
-  const response = await fetch("/api/program/:id");
-  return await response.json();
-}
-
-export async function createProgram(data) {
+export async function createProgram(postData) {
   const response = await fetch(`/api/program`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: JSON.stringify(postData),
   });
   return await response.json();
 }

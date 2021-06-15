@@ -23,9 +23,7 @@ const CreateProgram = ({ onChangeForm, createProgram }) => {
             placeholder="Title"
           />
         </div>
-        <button type="button" onClick={(e) => createProgram()}>
-          Create
-        </button>
+        <button onClick={(e) => createProgram()}>Create</button>
       </form>
     </div>
   );
